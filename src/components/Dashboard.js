@@ -1,17 +1,13 @@
 import React, { Component, Fragment } from "react";
-
-import { 
-  Typography,
-  AppBar,
-  Toolbar
-} from "@material-ui/core";
 import Header from './navBar/Header';
-
+import DashbordContent from './Module/DashboardContent';
 class Dashboard extends Component {
   render() {
     return (
       <Fragment>
          <Header />
+         <DashbordContent />
+
       </Fragment>
     );
   }
