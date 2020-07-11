@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
- 
-
 import { CardContent, Typography, Grid } from "@material-ui/core";
-
 const card = {
   background: "#ff2",
   borderRadius: "2px",
@@ -17,16 +14,28 @@ const card = {
 const cardBackgroundColor = {
   background: "#DDD",
   opacity: "0.3",
-  // borderRadius: "2px",
   display: "inline-block",
   height: "100%",
   margin: "1rem",
   position: "relative",
   padding: "5px",
-  width: "100%",
-  // boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+  width: "100%"
 };
 
+  var blinking=`
+  {
+    0%{		color: green;	}
+    49%{	color: transparent;	}
+    50%{	color: #FFF;	}
+    99%{	color:transparent;	}
+    100%{	color: green;	}
+  }`
+
+  var blink={
+    fontSize:"50px",
+    color:"green",
+    animation:`${blinking} 1.2s infinite`
+  }
 class DashboardContent extends Component {
   constructor(props) {
     super(props);
@@ -47,13 +56,12 @@ class DashboardContent extends Component {
   render() {
     // console.log(this.state.data.cases);
     var stateVar = this.state.data;
-
     return (
       <Fragment>
         {/* {this.state.loading ? "True" : " False"} */}
         <Grid container justify="center">
           <Grid item xs={12} md={5} sm={7} style={cardBackgroundColor}>
-            <Typography color="textSecondary">Last updated: {new Date(stateVar.updated).toDateString()}  {new Date(stateVar.updated).toLocaleTimeString()}</Typography>
+            <Typography color="textSecondary"> <span className={blink}> &#8226; </span> Last updated: {new Date(stateVar.updated).toDateString()}  {new Date(stateVar.updated).toLocaleTimeString()}</Typography>
           </Grid>
         </Grid>
         
