@@ -32,19 +32,19 @@ class DashboardContent extends Component {
     const res = await axios.get("https://corona.lmao.ninja/v2/all");
     this.setState({data:res.data});
     this.setState({ loading: false });
-    console.log(res.data);
+    // console.log(res.data);
     // console.log(res.data.cases);
   }
 
   render() {
-    console.log(this.state.data.cases);
+    // console.log(this.state.data.cases);
     var stateVar=this.state.data;
 
     return (
       <Fragment>
-        {this.state.loading ? "True" : " False"}
+        {/* {this.state.loading ? "True" : " False"} */}
         <Grid container  justify="center">          
-          <Grid item xs={12} md={3} sm={5} style={card}  >
+          <Grid item xs={12} md={3} sm={5} style={card}>
             <CardContent>
               <Typography color="textSecondary">Total cases</Typography>
               <Typography variant="h5" component="h2">
