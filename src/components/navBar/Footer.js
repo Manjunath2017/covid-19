@@ -30,8 +30,8 @@ class Footer extends Component {
     return (
     <Fragment>
       <Breadcrumbs aria-label="breadcrumb" style={{backgroundColor:"#3f51b5", color:"#FFF"}}>
-        <StyledBreadcrumb component="a" href="#" label="Facebook" color="secondary" icon={<FacebookIcon fontSize="small" />} />
-        <StyledBreadcrumb component="a" href="#" label="Instagram" color="secondary" icon={<InstagramIcon fontSize="small" />} />
+        <StyledBreadcrumb component="a" href="https://www.facebook.com/manjunathjadhavMJ" label="Facebook" color="secondary" icon={<FacebookIcon fontSize="small" />} />
+        <StyledBreadcrumb component="a" href="https://www.instagram.com/callmemj7/" label="Instagram" color="secondary" icon={<InstagramIcon fontSize="small" />} />
       </Breadcrumbs>
     </Fragment>
     );

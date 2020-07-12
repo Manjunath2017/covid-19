@@ -66,7 +66,7 @@ class DashboardContent extends Component {
         </Grid>
         
         <Grid container justify="center">
-          <Grid item xs={12} md={3} sm={5} style={card}>
+          <Grid item xs={12} md={3} sm={3} style={card}>
             <CardContent>
               <Typography color="textSecondary">Total cases</Typography>
               <Typography variant="h5" component="h2">
@@ -74,7 +74,7 @@ class DashboardContent extends Component {
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={5} style={card}>
+          <Grid item xs={12} md={3} sm={3} style={card}>
             <CardContent>
               <Typography color="textSecondary">Recovered</Typography>
               <Typography variant="h5" component="h2">
@@ -82,7 +82,7 @@ class DashboardContent extends Component {
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={5} style={card}>
+          <Grid item xs={12} md={3} sm={3} style={card}>
             <CardContent color="secondary">
               <Typography color="textSecondary">Deaths</Typography>
               <Typography variant="h5" component="h2">
@@ -90,7 +90,7 @@ class DashboardContent extends Component {
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={5} style={card}>
+          <Grid item xs={12} md={3} sm={3} style={card}>
             <CardContent>
               <Typography color="textSecondary">Today Cases</Typography>
               <Typography variant="h5" component="h2">
@@ -98,7 +98,7 @@ class DashboardContent extends Component {
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={5} style={card}>
+          <Grid item xs={12} md={3} sm={3} style={card}>
             <CardContent>
               <Typography color="textSecondary">Today Recovered</Typography>
               <Typography variant="h5" component="h2">
@@ -106,7 +106,7 @@ class DashboardContent extends Component {
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={5} style={card}>
+          <Grid item xs={12} md={3} sm={3} style={card}>
             <CardContent>
               <Typography color="textSecondary">Today Deaths</Typography>
               <Typography variant="h5" component="h2">
