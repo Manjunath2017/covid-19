@@ -1,0 +1,41 @@
+.card{
+  /* background: #00E592; */
+  /* background: #FEBB2F; */
+  background: #8E6BBD;
+  color: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  margin: 1rem !important;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.card:hover{
+  /* background: #fff; */
+
+}
+
+.cardBackgroundColor  {
+  background: #DDD;
+  opacity: 0.3;
+  display: inline-block;
+  height: 100%;
+  margin: 1rem !important;
+  position: relative;
+  padding: 5px;
+  width: 100%;
+};
+
+.blinkBullet{
+  animation:blinking 1.5s infinite;
+  font-size: 50px !important;
+  }
+
+  @keyframes blinking{
+  0%{   color: red;   }
+  47%{   color: #000; }
+  62%{   color: transparent; }
+  97%{   color:transparent; }
+  100%{  color: #000;   }
+  }

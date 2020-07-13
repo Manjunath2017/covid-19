@@ -1,47 +1,22 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { CardContent, Typography, Grid } from "@material-ui/core";
-const card = {
-  background: "#ff2",
-  borderRadius: "2px",
-  display: "inline-block",
-  height: "100%",
-  margin: "1rem",
-  position: "relative",
-  width: "100%",
-  boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
-};
-const cardBackgroundColor = {
-  background: "#DDD",
-  opacity: "0.3",
-  display: "inline-block",
-  height: "100%",
-  margin: "1rem",
-  position: "relative",
-  padding: "5px",
-  width: "100%"
-};
+import  './style.css';
 
-  var blinking=`
-  {
-    0%{		color: green;	}
-    49%{	color: transparent;	}
-    50%{	color: #FFF;	}
-    99%{	color:transparent;	}
-    100%{	color: green;	}
-  }`
-
-  var blink={
-    fontSize:"50px",
-    color:"green",
-    animation:`${blinking} 1.2s infinite`
-  }
 class DashboardContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      data: [],
+      data: {
+        cases: 0,
+        todayCases: 0,
+        deaths: 0,
+        todayDeaths: 0,
+        recovered: 0,
+        todayRecovered: 0,
+        active: 0
+      },
     };
   }
   async componentDidMount() {
@@ -60,57 +35,57 @@ class DashboardContent extends Component {
       <Fragment>
         {/* {this.state.loading ? "True" : " False"} */}
         <Grid container justify="center">
-          <Grid item xs={12} md={5} sm={7} style={cardBackgroundColor}>
-            <Typography color="textSecondary"> <span className={blink}> &#8226; </span> Last updated: {new Date(stateVar.updated).toDateString()}  {new Date(stateVar.updated).toLocaleTimeString()}</Typography>
+          <Grid item xs={12} md={5} sm={7} className="cardBackgroundColor">
+            <Typography color="textSecondary"> <span className="blinkBullet" > &#8226; </span> Last updated: {new Date(stateVar.updated).toDateString()}  {new Date(stateVar.updated).toLocaleTimeString()}</Typography>
           </Grid>
         </Grid>
         
         <Grid container justify="center">
-          <Grid item xs={12} md={3} sm={3} style={card}>
+          <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography color="textSecondary">Total cases</Typography>
-              <Typography variant="h5" component="h2">
-                {stateVar.cases}
+              <Typography>Cases</Typography>
+              <Typography variant="h5" component="h2" >
+                {stateVar.cases.toLocaleString() }
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={3} style={card}>
+          <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography color="textSecondary">Recovered</Typography>
+              <Typography >Recovered</Typography>
               <Typography variant="h5" component="h2">
-                {stateVar.recovered}
+                {stateVar.recovered.toLocaleString()}
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={3} style={card}>
+          <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent color="secondary">
-              <Typography color="textSecondary">Deaths</Typography>
+              <Typography >Deaths</Typography>
               <Typography variant="h5" component="h2">
-                {stateVar.deaths}
+                {stateVar.deaths.toLocaleString()}
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={3} style={card}>
+          <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography color="textSecondary">Today Cases</Typography>
+              <Typography >Today Cases</Typography>
               <Typography variant="h5" component="h2">
-                {stateVar.todayCases}
+                {stateVar.todayCases.toLocaleString()}
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={3} style={card}>
+          <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography color="textSecondary">Today Recovered</Typography>
+              <Typography >Today Recovered</Typography>
               <Typography variant="h5" component="h2">
-                {stateVar.todayRecovered}
+                {stateVar.todayRecovered.toLocaleString()}
               </Typography>
             </CardContent>
           </Grid>
-          <Grid item xs={12} md={3} sm={3} style={card}>
+          <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography color="textSecondary">Today Deaths</Typography>
+              <Typography >Today Deaths</Typography>
               <Typography variant="h5" component="h2">
-                {stateVar.todayDeaths}
+                {stateVar.todayDeaths.toLocaleString()}
               </Typography>
             </CardContent>
           </Grid>

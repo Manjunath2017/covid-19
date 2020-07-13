@@ -9,6 +9,8 @@ import {
   Paper,
   TableContainer,
   Select,
+  Typography,
+  Grid
 } from "@material-ui/core";
 
 class DashboardTable extends Component {
@@ -19,10 +21,16 @@ class DashboardTable extends Component {
       data: [],
       filterData: {},
       count: 0,
-      countries: [],
+      countries: []
     };
     this.selectCountry = this.selectCountry.bind(this);
   }
+  // country: 0,
+  // cases: 0,
+  // active: 0,
+  // recovered: 0,
+  // critical: 0,
+  // deaths: 0
   //get all countries corona cases
   async getCounteriesDetail() {
     //loading set to true till
@@ -93,6 +101,12 @@ class DashboardTable extends Component {
     return (
       <Fragment>
       <Paper>
+      <Grid  container justify="left">
+        <Grid item xs={12} md={12} sm={12} className="cardBackgroundColor">
+          <Typography color="textSecondary" > Reported Cases and Deaths in {countries.length} Countries  </Typography>
+        </Grid>
+      </Grid>
+        {/* <Typography >  </Typography> */}
         {loading ? (
           <h1> Loading... </h1>
         ) : (
@@ -113,11 +127,11 @@ class DashboardTable extends Component {
                       })}
                     </Select>
                   </TableCell>
-                  <TableCell align="left">Active</TableCell>
                   <TableCell align="left">Cases</TableCell>
+                  <TableCell align="left">Active</TableCell>
+                  <TableCell align="left">Recovered</TableCell>
                   <TableCell align="left">Critical</TableCell>
                   <TableCell align="left">Deaths</TableCell>
-                  <TableCell align="left">Recovered</TableCell>
                   {/* <TableCell style={{paddingleft:"60px"}} align="left" >Department</TableCell>   */}
                 </TableRow>
               </TableHead>
@@ -125,14 +139,14 @@ class DashboardTable extends Component {
                 {count >= 2 ? (
                   data.map((result) => {
                     return (
-                      <TableRow key={result.country}>
+                      <TableRow hover key={result.country}>
                         {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
-                        <TableCell align="left">{result.country}</TableCell>
-                        <TableCell align="left">{result.active}</TableCell>
-                        <TableCell align="left">{result.cases}</TableCell>
-                        <TableCell align="left">{result.critical}</TableCell>
-                        <TableCell align="left">{result.deaths}</TableCell>
-                        <TableCell align="left">{result.recovered}</TableCell>
+                        <TableCell align="left">{result.country.toLocaleString()}</TableCell>
+                        <TableCell align="left">{result.cases.toLocaleString()}</TableCell>
+                        <TableCell align="left">{result.active.toLocaleString()}</TableCell>
+                        <TableCell align="left">{result.recovered.toLocaleString()}</TableCell>
+                        <TableCell align="left">{result.critical.toLocaleString()}</TableCell>
+                        <TableCell align="left">{result.deaths.toLocaleString()}</TableCell>
                       </TableRow>
                     );
                   })
@@ -140,11 +154,11 @@ class DashboardTable extends Component {
                   <TableRow>
                     {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
                     <TableCell align="left">{filterData.country}</TableCell>
-                    <TableCell align="left">{filterData.active}</TableCell>
                     <TableCell align="left">{filterData.cases}</TableCell>
+                    <TableCell align="left">{filterData.active}</TableCell>
+                    <TableCell align="left">{filterData.recovered}</TableCell>
                     <TableCell align="left">{filterData.critical}</TableCell>
                     <TableCell align="left">{filterData.deaths}</TableCell>
-                    <TableCell align="left">{filterData.recovered}</TableCell>
                   </TableRow>
                 )}
               </TableBody>
