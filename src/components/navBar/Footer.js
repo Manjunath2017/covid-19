@@ -3,7 +3,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import Chip from '@material-ui/core/Chip';
-import { emphasize, withStyles } from '@material-ui/core/styles';
+import {  withStyles } from '@material-ui/core/styles';
 
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
