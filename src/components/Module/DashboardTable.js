@@ -12,7 +12,7 @@ import {
   Typography,
   Grid
 } from "@material-ui/core";
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 
 class DashboardTable extends Component {
   constructor(props) {
@@ -25,8 +25,7 @@ class DashboardTable extends Component {
       countries: []
     };
     this.selectCountry = this.selectCountry.bind(this);
-    this.search = this.search.bind(this);
-
+    // this.search = this.search.bind(this);
   }
   //get all countries corona cases
   async getCounteriesDetail() {
@@ -90,26 +89,26 @@ class DashboardTable extends Component {
     this.setState({ count });
     // console.log(typeof this.state.filterData, 'count', count);
   }
-    //Search ......
-    search(event) {
+    // //Search ......
+    // search(event) {
       
-      console.dir('search !', this.countries);
-      // this.setState({select:event.target.value});
-      const data = this.state.data;
+    //   console.dir('search !', this.countries);
+    //   // this.setState({select:event.target.value});
+    //   const data = this.state.data;
 
-      const Searchvalue= event.target.value.toLowerCase();
-      console.dir(Searchvalue, typeof data);
-      {
-        data
-          .filter(country => {
-            if(country.country.indexOf(Searchvalue) !== -1){
-              console.log(country);
-              this.setState({ data: country });
-              // console.dir(typeof data);
-            }
-          })
-      }
-    }
+    //   const Searchvalue= event.target.value.toLowerCase();
+    //   console.dir(Searchvalue, typeof data);
+    //   {
+    //     data
+    //       .filter(country => {
+    //         if(country.country.indexOf(Searchvalue) !== -1){
+    //           console.log(country);
+    //           this.setState({ data: country });
+    //           // console.dir(typeof data);
+    //         }
+    //       })
+    //   }
+    // }
 
   render() {
     // console.log('this', this.state.data.);
@@ -121,16 +120,16 @@ class DashboardTable extends Component {
       <Grid  container justify="center">
         <Grid item xs={12} md={6} sm={12} className="cardBackgroundColor">
           <Typography color="textSecondary" > Reported Cases and Deaths in {countries.length} Countries  </Typography>
-          <form  noValidate autoComplete="off">
+          {/* <form  noValidate autoComplete="off">
             <Input placeholder="Search" onChange={this.search}  />
-          </form>
+          </form> */}
         </Grid>
       </Grid>
         {/* <Typography >  </Typography> */}
         {loading ? (
           <h1> Loading... </h1>
         ) : (
-          <TableContainer style={{ display: "block",tableLayout: "fixed", overflow: "scroll", height: "50vh", maxWidth:"95%", margin:"0 auto" }}>
+          <TableContainer style={{ display: "block",tableLayout: "fixed", overflow: "scroll", height: "50vh", maxWidth:"95%", margin:"0 auto" }} >
             <Table  >
               <TableHead>
                 <TableRow>
