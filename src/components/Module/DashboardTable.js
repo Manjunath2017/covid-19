@@ -118,7 +118,7 @@ class DashboardTable extends Component {
       <Paper>
       <Grid  container justify="center">
         <Grid item xs={12} md={6} sm={12} className="cardBackgroundColor">
-          <Typography color="textSecondary" > Reported Cases and Deaths in {countries.length} Countries  </Typography>
+          <Typography color="textSecondary" > Covid-19 Report from {countries.length} Countries  </Typography>
           {/* <form  noValidate autoComplete="off">
             <Input placeholder="Search" onChange={this.search}  />
           </form> */}
@@ -134,7 +134,7 @@ class DashboardTable extends Component {
                 <TableRow>
                   {/* <TableCell align="right">Flag</TableCell>   */}
                   <TableCell align="left">
-                    <Select native onClick={this.selectCountry}  value={this.state.value} >
+                    <Select native onClick={this.selectCountry}   >
                       <option value="reset"> Select country or Reset </option>
                       {countries.map((result) => {
                         return (
