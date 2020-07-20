@@ -41,7 +41,7 @@ class DashboardTable extends Component {
       const pushCountry = [];
       var count = 0;
       for (var i in this.state.data) {
-        // console.log(this.state.data[i].country);
+        console.log(this.state.data[i].country);
         pushCountry.push({ name: this.state.data[i].country });
         count++;
       }
@@ -72,15 +72,14 @@ class DashboardTable extends Component {
     const data = this.state.data;
     // console.log('test handle click!', event.target.value, 'country.countries');
     var count = 0;
-    {
       data
         .filter((country) => country.country === event.target.value)
         .map((countryDetail) => {
-          // console.log('countryDetail', countryDetail);
-          this.setState({ filterData: countryDetail });
+          console.log('countryDetail', countryDetail);
           count++;
+        return this.setState({ filterData: countryDetail });
         });
-    }
+
     if (event.target.value === "reset") {
       count = 2;
       this.setState({ count });
