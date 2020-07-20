@@ -1,7 +1,7 @@
 .card{
   /* background: #00E592; */
   /* background: #FEBB2F; */
-  background: #8E6BBD;
+  background-color: #8E6BBD;
   color: #fff;
   border-radius: 2px;
   display: inline-block;
@@ -18,8 +18,8 @@
 }
 
 .cardBackgroundColor  {
-  background: #DDD;
-  opacity: 0.3;
+  background-color: #DDD;
+  /* opacity: 0.3; */
   display: inline-block;
   height: 100%;
   margin: 1rem !important;
@@ -39,4 +39,13 @@
   62%{   color: transparent; }
   97%{   color:transparent; }
   100%{  color: #000;   }
+  }
+
+  .noCases{
+    background-color: #e9ffdb !important;
+  }
+
+  .tableHeader{
+    font-weight: 400 !important;
+    font-size: 16px !important;
   }

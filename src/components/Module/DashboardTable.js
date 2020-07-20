@@ -6,7 +6,6 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Paper,
   TableContainer,
   Select,
   Typography,
@@ -41,7 +40,7 @@ class DashboardTable extends Component {
       const pushCountry = [];
       var count = 0;
       for (var i in this.state.data) {
-        console.log(this.state.data[i].country);
+        // console.log(this.state.data[i].country);
         pushCountry.push({ name: this.state.data[i].country });
         count++;
       }
@@ -75,7 +74,7 @@ class DashboardTable extends Component {
       data
         .filter((country) => country.country === event.target.value)
         .map((countryDetail) => {
-          console.log('countryDetail', countryDetail);
+          // console.log('countryDetail', countryDetail);
           count++;
         return this.setState({ filterData: countryDetail });
         });
@@ -115,9 +114,9 @@ class DashboardTable extends Component {
     // console.log(countries);
     return (
       <Fragment>
-      <Paper>
+    
       <Grid  container justify="center">
-        <Grid item xs={12} md={6} sm={12} className="cardBackgroundColor">
+        <Grid item  xs={12} md={6} sm={12} className="cardBackgroundColor">
           <Typography color="textSecondary" > Covid-19 Report from {countries.length} Countries  </Typography>
           {/* <form  noValidate autoComplete="off">
             <Input placeholder="Search" onChange={this.search}  />
@@ -128,13 +127,13 @@ class DashboardTable extends Component {
         {loading ? (
           <h1> Loading... </h1>
         ) : (
-          <TableContainer style={{ display: "block",tableLayout: "fixed", overflow: "scroll", height: "50vh", maxWidth:"95%", margin:"0 auto" }} >
-            <Table  >
+          <TableContainer style={{ overflow: "scroll", height: "50vh", maxWidth:"95%", margin:"0 auto" }} >
+            <Table   stickyHeader aria-label="sticky table" >
               <TableHead>
                 <TableRow>
                   {/* <TableCell align="right">Flag</TableCell>   */}
-                  <TableCell align="left">
-                    <Select native onClick={this.selectCountry}   >
+                  <TableCell align="left" className="tableHeader">
+                    <Select native onChange={this.selectCountry} >
                       <option value="reset"> Select country or Reset </option>
                       {countries.map((result) => {
                         return (
@@ -145,11 +144,11 @@ class DashboardTable extends Component {
                       })}
                     </Select>
                   </TableCell>
-                  <TableCell align="left">Cases</TableCell>
-                  <TableCell align="left">Active</TableCell>
-                  <TableCell align="left">Recovered</TableCell>
-                  <TableCell align="left">Critical</TableCell>
-                  <TableCell align="left">Deaths</TableCell>
+                  <TableCell align="left" className="tableHeader">Cases</TableCell>
+                  <TableCell align="left" className="tableHeader">Active</TableCell>
+                  <TableCell align="left" className="tableHeader">Recovered</TableCell>
+                  <TableCell align="left" className="tableHeader">Critical</TableCell>
+                  <TableCell align="left" className="tableHeader">Deaths</TableCell>
                   {/* <TableCell style={{paddingleft:"60px"}} align="left" >Department</TableCell>   */}
                 </TableRow>
               </TableHead>
@@ -157,10 +156,10 @@ class DashboardTable extends Component {
                 {count >= 2 ? (
                   data.map((result) => {
                     return (
-                      <TableRow hover key={result.country}>
+                      <TableRow hover key={result.country} className={result.active === 0 ? 'noCases':'' }>
                         {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
                         <TableCell align="left">{result.country.toLocaleString()}</TableCell>
-                        <TableCell align="left">{result.cases.toLocaleString()}</TableCell>
+                        <TableCell align="left" >{result.cases.toLocaleString()}</TableCell>
                         <TableCell align="left">{result.active.toLocaleString()}</TableCell>
                         <TableCell align="left">{result.recovered.toLocaleString()}</TableCell>
                         <TableCell align="left">{result.critical.toLocaleString()}</TableCell>
@@ -183,7 +182,11 @@ class DashboardTable extends Component {
             </Table>
           </TableContainer>
         )}
-      </Paper>
+       <Grid  container justify="center">
+        <Grid item xs={12} md={6} sm={12} className="cardBackgroundColor">
+          <Typography > <span style={{ backgroundColor: "#e9ffdb", padding:"3px" }}>Highlighted in green = all cases have recovered from the infection  </span> </Typography>
+        </Grid>
+      </Grid>
       </Fragment>
     );
   }

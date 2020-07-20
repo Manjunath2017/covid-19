@@ -35,8 +35,8 @@ class DashboardContent extends Component {
       <Fragment>
         {/* {this.state.loading ? "True" : " False"} */}
         <Grid container justify="center">
-          <Grid item xs={12} md={5} sm={7} className="cardBackgroundColor">
-            <Typography color="textSecondary"> <span className="blinkBullet" > &#8226; </span> Last updated: {new Date(stateVar.updated).toDateString()}  {new Date(stateVar.updated).toLocaleTimeString()}</Typography>
+          <Grid item xs={12} md={6} sm={12} className="cardBackgroundColor">
+            <Typography color="textSecondary">  Last updated: {new Date(stateVar.updated).toDateString()}  {new Date(stateVar.updated).toLocaleTimeString()}</Typography>
           </Grid>
         </Grid>
         
