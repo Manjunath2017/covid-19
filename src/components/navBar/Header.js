@@ -5,9 +5,6 @@ import {
   AppBar,
   Toolbar
 } from "@material-ui/core";
- 
-
-
 class Header extends Component {
   render() {
     return (
