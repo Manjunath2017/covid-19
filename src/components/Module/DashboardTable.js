@@ -144,11 +144,14 @@ class DashboardTable extends Component {
                       })}
                     </Select>
                   </TableCell>
-                  <TableCell align="left" className="tableHeader">Cases</TableCell>
-                  <TableCell align="left" className="tableHeader">Active</TableCell>
-                  <TableCell align="left" className="tableHeader">Recovered</TableCell>
-                  <TableCell align="left" className="tableHeader">Critical</TableCell>
-                  <TableCell align="left" className="tableHeader">Deaths</TableCell>
+                  <TableCell align="center" className="tableHeader">TotalCases</TableCell>
+                  <TableCell align="center" className="tableHeader">NewCases</TableCell>
+                  <TableCell align="center" className="tableHeader">TotalActive</TableCell>
+                  <TableCell align="center" className="tableHeader">TotalRecovered</TableCell>
+                  <TableCell align="center" className="tableHeader">NewRecovered</TableCell>
+                  <TableCell align="center" className="tableHeader">Critical</TableCell>
+                  <TableCell align="center" className="tableHeader">TotalDeaths</TableCell>
+                  <TableCell align="center" className="tableHeader">NewDeaths</TableCell>
                   {/* <TableCell style={{paddingleft:"60px"}} align="left" >Department</TableCell>   */}
                 </TableRow>
               </TableHead>
@@ -158,24 +161,31 @@ class DashboardTable extends Component {
                     return (
                       <TableRow hover key={result.country} className={result.active === 0 ? 'noCases':'' }>
                         {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
-                        <TableCell align="left">{result.country.toLocaleString()}</TableCell>
-                        <TableCell align="left" >{result.cases.toLocaleString()}</TableCell>
-                        <TableCell align="left">{result.active.toLocaleString()}</TableCell>
-                        <TableCell align="left">{result.recovered.toLocaleString()}</TableCell>
-                        <TableCell align="left">{result.critical.toLocaleString()}</TableCell>
-                        <TableCell align="left">{result.deaths.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.country.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.cases.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.todayCases.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.active.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.recovered.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.todayRecovered.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.critical.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.deaths.toLocaleString()}</TableCell>
+                        <TableCell align="center">{result.todayDeaths.toLocaleString()}</TableCell>
+
                       </TableRow>
                     );
                   })
                 ) : (
                   <TableRow>
                     {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
-                    <TableCell align="left">{filterData.country}</TableCell>
-                    <TableCell align="left">{filterData.cases}</TableCell>
-                    <TableCell align="left">{filterData.active}</TableCell>
-                    <TableCell align="left">{filterData.recovered}</TableCell>
-                    <TableCell align="left">{filterData.critical}</TableCell>
-                    <TableCell align="left">{filterData.deaths}</TableCell>
+                    <TableCell align="center">{filterData.country}</TableCell>
+                    <TableCell align="center">{filterData.cases}</TableCell>
+                    <TableCell align="center">{filterData.todayCases}</TableCell>
+                    <TableCell align="center">{filterData.active}</TableCell>
+                    <TableCell align="center">{filterData.recovered}</TableCell>
+                    <TableCell align="center">{filterData.todayRecovered}</TableCell>
+                    <TableCell align="center">{filterData.critical}</TableCell>
+                    <TableCell align="center">{filterData.deaths}</TableCell>
+                    <TableCell align="center">{filterData.todayDeaths}</TableCell>
                   </TableRow>
                 )}
               </TableBody>
@@ -184,7 +194,7 @@ class DashboardTable extends Component {
         )}
        <Grid  container justify="center">
         <Grid item xs={12} md={6} sm={12} className="cardBackgroundColor">
-          <Typography > <span style={{ backgroundColor: "#e9ffdb", padding:"3px" }}>Highlighted in green = all cases have recovered from the infection  </span> </Typography>
+          <Typography > <span style={{ backgroundColor: "#e9ffdb", padding:"3px" }}>Highlighted in green = all cases have recovered from the infection (no death)  </span> </Typography>
         </Grid>
       </Grid>
       </Fragment>

@@ -100,8 +100,9 @@ search(event) {
   dataValues.filter(country => {
         if(country.country.indexOf(Searchvalue) !== -1){
           console.log(country.country.indexOf(Searchvalue));
-         return this.setState({ data: country });
-          // console.dir(typeof data);
+          console.log(country);  
+            // this.setState({ data: country });
+          console.dir(typeof country);
         }
       })
 }

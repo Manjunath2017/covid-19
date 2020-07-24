@@ -67,7 +67,7 @@ class DashboardContent extends Component {
           </Grid>
           <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography >Today Cases</Typography>
+              <Typography >New Cases</Typography>
               <Typography variant="h5" component="h2">
                 {stateVar.todayCases.toLocaleString()}
               </Typography>
@@ -75,7 +75,7 @@ class DashboardContent extends Component {
           </Grid>
           <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography >Today Recovered</Typography>
+              <Typography >New Recovered</Typography>
               <Typography variant="h5" component="h2">
                 {stateVar.todayRecovered.toLocaleString()}
               </Typography>
@@ -83,7 +83,7 @@ class DashboardContent extends Component {
           </Grid>
           <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>
-              <Typography >Today Deaths</Typography>
+              <Typography >New Deaths</Typography>
               <Typography variant="h5" component="h2">
                 {stateVar.todayDeaths.toLocaleString()}
               </Typography>

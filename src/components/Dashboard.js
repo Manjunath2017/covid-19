@@ -4,14 +4,14 @@ import Footer from './navBar/Footer';
 
 import DashbordContent from './Module/DashboardContent';
 import DashboardTable from './Module/DashboardTable';
-import Test from './Module/Test';
+// import Test from './Module/Test';
 
 class Dashboard extends Component {
   render() {
     return (
       <Fragment>
          <Header />
-         <Test />
+         {/* <Test /> */}
          <DashbordContent />
          <DashboardTable />
          <Footer />
