@@ -19,7 +19,17 @@ class DashboardTable extends Component {
     this.state = {
       loading: false,
       data: [],
-      filterData: {},
+      filterData: {
+        country:0,
+        cases:0,
+        todayCases:0,
+        active:0,
+        recovered:0,
+        todayRecovered:0,
+        critical:0,
+        deaths:0,
+        todayDeaths:0
+      },
       count: 0,
       countries: []
     };
@@ -175,17 +185,18 @@ class DashboardTable extends Component {
                     );
                   })
                 ) : (
+
                   <TableRow>
                     {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
                     <TableCell align="center">{filterData.country}</TableCell>
-                    <TableCell align="center">{filterData.cases}</TableCell>
-                    <TableCell align="center">{filterData.todayCases}</TableCell>
-                    <TableCell align="center">{filterData.active}</TableCell>
-                    <TableCell align="center">{filterData.recovered}</TableCell>
-                    <TableCell align="center">{filterData.todayRecovered}</TableCell>
-                    <TableCell align="center">{filterData.critical}</TableCell>
-                    <TableCell align="center">{filterData.deaths}</TableCell>
-                    <TableCell align="center">{filterData.todayDeaths}</TableCell>
+                    <TableCell align="center">{filterData.cases.toLocaleString()}</TableCell>
+                    <TableCell align="center">{filterData.todayCases.toLocaleString()}</TableCell>
+                    <TableCell align="center">{filterData.active.toLocaleString()}</TableCell>
+                    <TableCell align="center">{filterData.recovered.toLocaleString()}</TableCell>
+                    <TableCell align="center">{filterData.todayRecovered.toLocaleString()}</TableCell>
+                    <TableCell align="center">{filterData.critical.toLocaleString()}</TableCell>
+                    <TableCell align="center">{filterData.deaths.toLocaleString()}</TableCell>
+                    <TableCell align="center">{filterData.todayDeaths.toLocaleString()}</TableCell>
                   </TableRow>
                 )}
               </TableBody>
