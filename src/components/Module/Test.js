@@ -9,7 +9,9 @@ import {
   TableContainer,
   Select,
   Typography,
-  Grid
+  Grid,
+  Avatar,
+  Box
 } from "@material-ui/core";
 import Input from '@material-ui/core/Input';
 
@@ -76,7 +78,7 @@ class DashboardTable extends Component {
         .filter((country) => country.country === event.target.value)
         .map((countryDetail) => {
           count++;
-        return this.setState({ filterData: countryDetail });
+        return this.setState({...data.filterData, filterData: countryDetail });
         });
     if (event.target.value === "reset") {
       count = 2;
@@ -153,11 +155,26 @@ search(event) {
               </TableHead>
               <TableBody>
                 {count >= 2 ? (
-                  data.map((result) => {
+                  data.map((result, index) => {
                     return (
                       <TableRow hover key={result.country} className={result.active === 0 ? 'noCases':'' }>
+
                         {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
-                        <TableCell align="left">{result.country.toLocaleString()}</TableCell>
+                        
+
+                        <TableCell align="left"  > 
+                        <Box display="flex" flexWrap="nowrap"   >
+                          <Box>
+                          {/* {result.index.countryInfo.flag} */}
+                            {/* <Avatar style={{height:"100%", width:"50px"}} variant="square" alt="Remy Sharp" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" /> */}
+                            {/* <Avatar style={{height:"100%", width:"50px"}} variant="square" alt="Remy Sharp" src= /> */}
+
+                          </Box>
+                          <Box style={{margin:"5px 0px 0px 5px"}}>
+                              {result.country.toLocaleString()} 
+                          </Box>
+                        </Box>
+                        </TableCell>
                         <TableCell align="left" >{result.cases.toLocaleString()}</TableCell>
                         {/* <TableCell align="left">{result.active.toLocaleString()}</TableCell>
                         <TableCell align="left">{result.recovered.toLocaleString()}</TableCell>
