@@ -161,14 +161,13 @@ search(event) {
 
                         {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
                         
+{/* {console.log(result[0].countryInfo.flag)} */}
 
                         <TableCell align="left"  > 
                         <Box display="flex" flexWrap="nowrap"   >
                           <Box>
-                          {/* {result.index.countryInfo.flag} */}
-                            {/* <Avatar style={{height:"100%", width:"50px"}} variant="square" alt="Remy Sharp" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" /> */}
+                            <Avatar style={{height:"30px", width:"50px"}} variant="square" alt={result.country} src={data[index].countryInfo.flag} />
                             {/* <Avatar style={{height:"100%", width:"50px"}} variant="square" alt="Remy Sharp" src= /> */}
-
                           </Box>
                           <Box style={{margin:"5px 0px 0px 5px"}}>
                               {result.country.toLocaleString()} 
