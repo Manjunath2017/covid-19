@@ -46,6 +46,9 @@ class DashboardTable extends Component {
       //make an http call
       const res = await axios.get("https://corona.lmao.ninja/v2/countries");
       console.log(res.data[0].countryInfo);
+      res.data.map(result=>{
+        console.log(result.countryInfo.flag);
+      })
       //After getting data set the result
       this.setState({ data: res.data });
 
@@ -176,7 +179,7 @@ class DashboardTable extends Component {
                         <TableCell align="center">
                         <Box display="flex" flexWrap="nowrap"  align="center"  >
                           <Box>
-                            <Avatar style={{height:"30px", width:"50px"}} variant="square" alt={result.country} src={data[index].countryInfo.flag} />
+                            <Avatar style={{height:"30px", width:"50px"}} variant="square" alt={result.country} src={result.countryInfo.flag} />
                           </Box>
                           <Box style={{margin:"5px 0px 0px 5px"}}> {result.country.toLocaleString()} </Box>
                         </Box>
