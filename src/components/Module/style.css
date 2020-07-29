@@ -41,9 +41,12 @@
   100%{  color: #000;   }
   }
 
-  .noCases{
+  .noCasesAndDeath{
     background-color: #e9ffdb !important;
   }
+.noCases{
+  background-color: #c3e6fc !important;
+}
 
   .tableHeader{
     font-weight: 400 !important;

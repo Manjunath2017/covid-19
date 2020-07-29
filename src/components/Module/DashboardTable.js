@@ -45,10 +45,11 @@ class DashboardTable extends Component {
     try {
       //make an http call
       const res = await axios.get("https://corona.lmao.ninja/v2/countries");
-      console.log(res.data[0].countryInfo);
-      res.data.map(result=>{
-        console.log(result.countryInfo.flag);
-      })
+
+      // res.data.map(result=>{
+      //   console.log(result.countryInfo.flag);
+      // })
+
       //After getting data set the result
       this.setState({ data: res.data });
 
@@ -174,16 +175,19 @@ class DashboardTable extends Component {
                 {count >= 2 ? (
                   data.map((result, index) => {
                     return (
-                      <TableRow hover key={result.country} className={result.active === 0 ? 'noCases':'' }>
-                        {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
+                      
+                      <TableRow hover key={result.country} className={
+                        ( (result.active === 0) && (result.deaths === 0) ) ? 'noCasesAndDeath': (result.active === 0)? 'noCases':'' 
+                      }>                       
                         <TableCell align="center">
-                        <Box display="flex" flexWrap="nowrap"  align="center"  >
-                          <Box>
-                            <Avatar style={{height:"30px", width:"50px"}} variant="square" alt={result.country} src={result.countryInfo.flag} />
+                          <Box display="flex" flexWrap="nowrap"  align="center"  >
+                            <Box>
+                              <Avatar style={{height:"30px", width:"50px"}} variant="square" alt={result.country} src={result.countryInfo.flag} />
+                            </Box>
+                            <Box style={{margin:"5px 0px 0px 5px"}}> {result.country.toLocaleString()} </Box>
                           </Box>
-                          <Box style={{margin:"5px 0px 0px 5px"}}> {result.country.toLocaleString()} </Box>
-                        </Box>
                         </TableCell>
+
                         <TableCell align="center">{result.cases.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.todayCases.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.active.toLocaleString()}</TableCell>
@@ -192,7 +196,6 @@ class DashboardTable extends Component {
                         <TableCell align="center">{result.critical.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.deaths.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.todayDeaths.toLocaleString()}</TableCell>
-
                       </TableRow>
                     );
                   })
@@ -217,7 +220,8 @@ class DashboardTable extends Component {
         )}
        <Grid  container justify="center">
         <Grid item xs={12} md={6} sm={12} className="cardBackgroundColor">
-          <Typography > <span style={{ backgroundColor: "#e9ffdb", padding:"3px" }}>Highlighted in green = all cases have recovered from the infection (no death)  </span> </Typography>
+          <Typography align="left" style={{color:"rgba(0, 0, 0, 0.54)"}}><span style={{ backgroundColor: "#e9ffdb", padding:"3px", margin:"3px" }}>1) Highlighted in green</span>= All cases have recovered from the infection (no death). </Typography>
+          <Typography align="left" style={{color:"rgba(0, 0, 0, 0.54)"}}><span style={{ backgroundColor: "#c3e6fc", padding:"3px", margin:"3px" }}>2) Highlighted in sky blue</span>= Currently no active cases. </Typography>
         </Grid>
       </Grid>
       </Fragment>

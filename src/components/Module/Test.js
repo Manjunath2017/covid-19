@@ -25,7 +25,7 @@ class DashboardTable extends Component {
       count: 0,
       countries: []
     };
-    this.selectCountry = this.selectCountry.bind(this);
+    // this.selectCountry = this.selectCountry.bind(this);
     this.search = this.search.bind(this);
   }
   //get all countries corona cases
@@ -68,24 +68,24 @@ class DashboardTable extends Component {
   }
 
   //Filer ......
-  selectCountry(event) {
-    // this.setState({select:event.target.value});
-    const data = this.state.data;
-    console.log(data);
-    // console.log('test handle click!', event.target.value, 'country.countries');
-    var count = 0;
-      data
-        .filter((country) => country.country === event.target.value)
-        .map((countryDetail) => {
-          count++;
-        return this.setState({...data.filterData, filterData: countryDetail });
-        });
-    if (event.target.value === "reset") {
-      count = 2;
-      this.setState({ count });
-    }
-    this.setState({ count });
-  }
+  // selectCountry(event) {
+  //   // this.setState({select:event.target.value});
+  //   const data = this.state.data;
+  //   console.log(data);
+  //   // console.log('test handle click!', event.target.value, 'country.countries');
+  //   var count = 0;
+  //     data
+  //       .filter((country) => country.country === event.target.value)
+  //       .map((countryDetail) => {
+  //         count++;
+  //       return this.setState({ filterData: countryDetail });
+  //       });
+  //   if (event.target.value === "reset") {
+  //     count = 2;
+  //     this.setState({ count });
+  //   }
+  //   this.setState({ count });
+  // }
    
 //textBox Search ......
 search(event) {
@@ -134,7 +134,8 @@ search(event) {
                 <TableRow>
                   {/* <TableCell align="right">Flag</TableCell>   */}
                   <TableCell align="left" className="tableHeader">
-                    <Select native onChange={this.selectCountry} >
+                    {/* <Select native onChange={this.selectCountry} > */}
+                    <Select native  >
                       <option value="reset"> Select country or Reset </option>
                       {countries.map((result) => {
                         return (
