@@ -7,13 +7,14 @@ import {
   TableHead,
   TableRow,
   TableContainer,
-  Select,
+  // Select,
   Typography,
   Grid,
   Avatar,
-  Box
-} from "@material-ui/core";
-import Input from '@material-ui/core/Input';
+  Box,
+  TextField,
+  Input
+} from "@material-ui/core"; 
 
 class DashboardTable extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class DashboardTable extends Component {
     this.state = {
       loading: false,
       data: [],
+      filter:"",
       filterData: {},
       count: 0,
       countries: []
@@ -35,17 +37,17 @@ class DashboardTable extends Component {
     try {
       //make an http call
       const res = await axios.get("https://corona.lmao.ninja/v2/countries");
-      console.log(res);
+      // console.log(res);
       //After getting data set the result
       this.setState({ data: res.data });
 
-      const pushCountry = [];
-      var count = 0;
-      for (var i in this.state.data) {
-        // console.log(this.state.data[i].country);
-        pushCountry.push({ name: this.state.data[i].country });
-        count++;
-      }
+      // const pushCountry = [];
+      // var count = 0;
+      // for (var i in this.state.data) {
+      //   // console.log(this.state.data[i].country);
+      //   pushCountry.push({ name: this.state.data[i].country });
+      //   count++;
+      // }
       this.setState({ count });
       this.setState({ countries: pushCountry });
       //After getting data loading remains false
@@ -64,55 +66,54 @@ class DashboardTable extends Component {
 
   async componentDidMount() {
     this.getCounteriesDetail();
-    // console.log(this.state.data);
   }
-
-  //Filer ......
-  // selectCountry(event) {
-  //   // this.setState({select:event.target.value});
-  //   const data = this.state.data;
-  //   console.log(data);
-  //   // console.log('test handle click!', event.target.value, 'country.countries');
-  //   var count = 0;
-  //     data
-  //       .filter((country) => country.country === event.target.value)
-  //       .map((countryDetail) => {
-  //         count++;
-  //       return this.setState({ filterData: countryDetail });
-  //       });
-  //   if (event.target.value === "reset") {
-  //     count = 2;
-  //     this.setState({ count });
-  //   }
-  //   this.setState({ count });
-  // }
    
 //textBox Search ......
 search(event) {
   event.preventDefault(); 
-  // console.dir('search !', this.countries); 
+  console.dir('search !'); 
 
-  // this.setState({select:event.target.value});
-  
-  const dataValues = this.state.data;
+  ////get value from user and assign it to 'filter'
+  // this.setState({filter:event.target.value});
+  const dataToSearch=event.target.value;
+   
+  const searchDataToLowerCase=dataToSearch.toString().toLowerCase();
 
-  const Searchvalue= event.target.value.toLowerCase();
-  console.log(Searchvalue,  dataValues);
-    
-  dataValues.filter(country => {
-        if(country.country.indexOf(Searchvalue) !== -1){
-          console.log(country.country.indexOf(Searchvalue));
-          console.log(country);  
-            // this.setState({ data: country });
-          console.dir(typeof country);
-        }
-      })
+  console.log(searchDataToLowerCase);
+
+  const filteredResult = data.filter(item => {
+
+    console.log('item', Object.keys(item).some(key =>item[key].toString().toLowerCase() ) );
+
+    return Object.keys(item).some(key =>
+      item[key].toString().toLowerCase().includes(searchDataToLowerCase)
+      );
+    });
+
+    console.log(filteredResult);
+
 }
 
   render() {
     // console.log('this', this.state.data.);
-    const { data, countries, loading, count, filterData } = this.state;
+    const { data, countries, loading, count, filterData, filter } = this.state;
     // console.log(countries);
+   
+    const searchDataToLowerCase=filter.toString().toLowerCase();
+
+    console.log(searchDataToLowerCase);
+  
+    const filteredResult = data.filter(item => {
+  
+      console.log('item', Object.keys(item).some(key =>item[key].toString().toLowerCase() ) );
+  
+      return Object.keys(item).some(key =>
+        item[key].toString().toLowerCase().includes(searchDataToLowerCase)
+        );
+      });
+  
+      console.log(filteredResult);
+
     return (
       <Fragment>
     
@@ -124,6 +125,11 @@ search(event) {
           </form>
         </Grid>
       </Grid>
+        <form  noValidate autoComplete="on">
+          <div>
+
+          </div>
+        </form>
       
         {loading ? (
           <h1> Loading... </h1>
@@ -133,19 +139,11 @@ search(event) {
               <TableHead>
                 <TableRow>
                   {/* <TableCell align="right">Flag</TableCell>   */}
+
                   <TableCell align="left" className="tableHeader">
-                    {/* <Select native onChange={this.selectCountry} > */}
-                    <Select native  >
-                      <option value="reset"> Select country or Reset </option>
-                      {countries.map((result) => {
-                        return (
-                          <option value={result.name} key={result.name}>
-                            {result.name}
-                          </option>
-                        );
-                      })}
-                    </Select>
+                    <TextField label="Search country" onChange={this.search}  />
                   </TableCell>
+                  
                   <TableCell align="left" className="tableHeader">Cases</TableCell>
                   {/* <TableCell align="left" className="tableHeader">Active</TableCell>
                   <TableCell align="left" className="tableHeader">Recovered</TableCell>
@@ -155,15 +153,10 @@ search(event) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {count >= 2 ? (
-                  data.map((result, index) => {
+             
+                  {filteredResult.map((result, index) => {
                     return (
                       <TableRow hover key={result.country} className={result.active === 0 ? 'noCases':'' }>
-
-                        {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
-                        
-{/* {console.log(result[0].countryInfo.flag)} */}
-
                         <TableCell align="left"  > 
                         <Box display="flex" flexWrap="nowrap"   >
                           <Box>
@@ -181,19 +174,11 @@ search(event) {
                         <TableCell align="left">{result.critical.toLocaleString()}</TableCell>
                         <TableCell align="left">{result.deaths.toLocaleString()}</TableCell> */}
                       </TableRow>
-                    );
+                    )
                   })
-                ) : (
-                  <TableRow>
-                    {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
-                    <TableCell align="left">{filterData.country}</TableCell>
-                    <TableCell align="left">{filterData.cases}</TableCell>
-                    {/* <TableCell align="left">{filterData.active}</TableCell>
-                    <TableCell align="left">{filterData.recovered}</TableCell>
-                    <TableCell align="left">{filterData.critical}</TableCell>
-                    <TableCell align="left">{filterData.deaths}</TableCell> */}
-                  </TableRow>
-                )}
+                }
+                
+                
               </TableBody>
             </Table>
           </TableContainer>

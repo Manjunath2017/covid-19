@@ -7,11 +7,12 @@ import {
   TableHead,
   TableRow,
   TableContainer,
-  Select,
+  // Select,
   Typography,
   Grid,
-  Box,
-  Avatar
+  TextField
+  // Box,
+  // Avatar
 } from "@material-ui/core";
 // import Input from '@material-ui/core/Input';
 
@@ -21,22 +22,12 @@ class DashboardTable extends Component {
     this.state = {
       loading: false,
       data: [],
-      filterData: {
-        country:0,
-        cases:0,
-        todayCases:0,
-        active:0,
-        recovered:0,
-        todayRecovered:0,
-        critical:0,
-        deaths:0,
-        todayDeaths:0
-      },
+      filterData: [],
       count: 0,
       countries: []
     };
-    this.selectCountry = this.selectCountry.bind(this);
-    // this.search = this.search.bind(this);
+    // this.selectCountry = this.selectCountry.bind(this);
+    this.search = this.search.bind(this);
   }
   //get all countries corona cases
   async getCounteriesDetail() {
@@ -45,7 +36,6 @@ class DashboardTable extends Component {
     try {
       //make an http call
       const res = await axios.get("https://corona.lmao.ninja/v2/countries");
-
       // res.data.map(result=>{
       //   console.log(result.countryInfo.flag);
       // })
@@ -53,15 +43,15 @@ class DashboardTable extends Component {
       //After getting data set the result
       this.setState({ data: res.data });
 
-      const pushCountry = [];
-      var count = 0;
-      for (var i in this.state.data) {
-        // console.log(this.state.data[i].country);
-        pushCountry.push({ name: this.state.data[i].country });
-        count++;
-      }
-      this.setState({ count });
-      this.setState({ countries: pushCountry });
+      // const pushCountry = [];
+      // var count = 0;
+      // for (var i in this.state.data) {
+      //   // console.log(this.state.data[i].country);
+      //   pushCountry.push({ name: this.state.data[i].country });
+      //   count++;
+      // }
+      // this.setState({ count });
+      // this.setState({ countries: pushCountry });
       //After getting data loading remains false
 
       this.setState({ loading: false });
@@ -81,48 +71,54 @@ class DashboardTable extends Component {
     // console.log(this.state.data);
   }
 
-  //Filer ......
-  selectCountry(event) {
-    // this.setState({select:event.target.value});
-    const data = this.state.data;
-    // console.log('test handle click!', event.target.value, 'country.countries');
-    var count = 0;
-      data
-        .filter((country) => country.country === event.target.value)
-        .map((countryDetail) => {
-          // console.log('countryDetail', countryDetail);
-          count++;
-        return this.setState({ filterData: countryDetail });
-        });
+  // //Filer ...... its working 
+  // selectCountry(event) {
+  //   // this.setState({select:event.target.value});
+  //   const data = this.state.data;
+  //   // console.log('test handle click!', event.target.value, 'country.countries');
+  //   var count = 0;
+  //   if (event.target.value === "reset") {
+  //     count = 2;
+  //     this.setState({ count });
+  //     // console.log(this.state.count);
+  //   }
+  //   this.setState({ count });
 
-    if (event.target.value === "reset") {
-      count = 2;
-      this.setState({ count });
-      // console.log(this.state.count);
-    }
-    this.setState({ count });
-    // console.log(typeof this.state.filterData, 'count', count);
-  }
-    // //Search ......
-    // search(event) {
-      
-    //   console.dir('search !', this.countries);
-    //   // this.setState({select:event.target.value});
-    //   const data = this.state.data;
+  //     data
+  //       .filter((country) => country.country === event.target.value)
+  //       .map((countryDetail) => {
+  //         // console.log('countryDetail', countryDetail);
+  //         count++;
+  //       return this.setState({ filterData: countryDetail });
+  //       });
+  //   // console.log(typeof this.state.filterData, 'count', count);
+  // }
+  //textBox Search ......
+search(event) {
+  event.preventDefault(); 
+  console.dir('search !'); 
 
-    //   const Searchvalue= event.target.value.toLowerCase();
-    //   console.dir(Searchvalue, typeof data);
-    //   {
-    //     data
-    //       .filter(country => {
-    //         if(country.country.indexOf(Searchvalue) !== -1){
-    //           console.log(country);
-    //           this.setState({ data: country });
-    //           // console.dir(typeof data);
-    //         }
-    //       })
-    //   }
-    // }
+  ////get value from user and assign it to 'filter'
+  // this.setState({filter:event.target.value});
+  const dataToSearch=event.target.value;
+   
+  const searchDataToLowerCase=dataToSearch.toString().toLowerCase();
+
+  console.log(searchDataToLowerCase);
+
+  const filteredResult = this.state.data.filter(item => {
+
+    console.log('item', Object.keys(item).some(key =>item[key].toString().toLowerCase() ) );
+
+    return Object.keys(item).some(key =>
+      item[key].toString().toLowerCase().includes(searchDataToLowerCase)
+      );
+    });
+    this.setState({filterData:filteredResult});
+
+    console.log(this.state.filterData);
+
+}
 
   render() {
     // console.log('this', this.state.data.);
@@ -149,6 +145,8 @@ class DashboardTable extends Component {
                 <TableRow>
                   {/* <TableCell align="right">Flag</TableCell>   */}
                   <TableCell align="left" className="tableHeader">
+                    {/*
+                    its working
                     <Select native onChange={this.selectCountry} >
                       <option value="reset"> Select country or Reset </option>
                       {countries.map((result) => {
@@ -158,7 +156,9 @@ class DashboardTable extends Component {
                           </option>
                         );
                       })}
-                    </Select>
+                    </Select> */}
+                    <span style={{visibility:"hidden"}}>SelectCountry</span>
+                    <TextField style={{marginTop:"-32px"}}label="SearchCountry" onChange={this.search}  />
                   </TableCell>
                   <TableCell align="center" className="tableHeader">TotalCases</TableCell>
                   <TableCell align="center" className="tableHeader">NewCases</TableCell>
@@ -172,22 +172,20 @@ class DashboardTable extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {count >= 2 ? (
-                  data.map((result, index) => {
+                {filterData.map((result) => {
                     return (
-                      
                       <TableRow hover key={result.country} className={
                         ( (result.active === 0) && (result.deaths === 0) ) ? 'noCasesAndDeath': (result.active === 0)? 'noCases':'' 
                       }>                       
-                        <TableCell align="center">
+                        {/* <TableCell align="center">
                           <Box display="flex" flexWrap="nowrap"  align="center"  >
                             <Box>
                               <Avatar style={{height:"30px", width:"50px"}} variant="square" alt={result.country} src={result.countryInfo.flag} />
                             </Box>
                             <Box style={{margin:"5px 0px 0px 5px"}}> {result.country.toLocaleString()} </Box>
                           </Box>
-                        </TableCell>
-
+                        </TableCell> */}
+                        <TableCell align="left">{result.country.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.cases.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.todayCases.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.active.toLocaleString()}</TableCell>
@@ -199,21 +197,7 @@ class DashboardTable extends Component {
                       </TableRow>
                     );
                   })
-                ) : (
-
-                  <TableRow>
-                    {/* <TableCell align="left"><img src={result.countryInfo.flag} alt={result.countryinfo.flag} /></TableCell>  */}
-                    <TableCell align="center">{filterData.country}</TableCell>
-                    <TableCell align="center">{filterData.cases.toLocaleString()}</TableCell>
-                    <TableCell align="center">{filterData.todayCases.toLocaleString()}</TableCell>
-                    <TableCell align="center">{filterData.active.toLocaleString()}</TableCell>
-                    <TableCell align="center">{filterData.recovered.toLocaleString()}</TableCell>
-                    <TableCell align="center">{filterData.todayRecovered.toLocaleString()}</TableCell>
-                    <TableCell align="center">{filterData.critical.toLocaleString()}</TableCell>
-                    <TableCell align="center">{filterData.deaths.toLocaleString()}</TableCell>
-                    <TableCell align="center">{filterData.todayDeaths.toLocaleString()}</TableCell>
-                  </TableRow>
-                )}
+                }
               </TableBody>
             </Table>
           </TableContainer>

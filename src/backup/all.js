@@ -1,0 +1,23 @@
+{
+  updated: 1596092476300,
+  cases: 17195721,
+  todayCases: 18161,
+  deaths: 670322,
+  todayDeaths: 750,
+  recovered: 10706687,
+  todayRecovered: 17157,
+  active: 5818712,
+  critical: 66385,
+  casesPerOneMillion: 2206,
+  deathsPerOneMillion: 86,
+  tests: 332018382,
+  testsPerOneMillion: 42762.9,
+  population: 7764168468,
+  oneCasePerPeople: 0,
+  oneDeathPerPeople: 0,
+  oneTestPerPeople: 0,
+  activePerOneMillion: 749.43,
+  recoveredPerOneMillion: 1378.99,
+  criticalPerOneMillion: 8.55,
+  affectedCountries: 215
+}
