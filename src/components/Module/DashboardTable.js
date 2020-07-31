@@ -10,7 +10,7 @@ import {
   // Select,
   Typography,
   Grid,
-  TextField
+  TextField,
   // Box,
   // Avatar
 } from "@material-ui/core";
@@ -22,8 +22,9 @@ class DashboardTable extends Component {
     this.state = {
       loading: false,
       data: [],
-      filterData: [],
-      count: 0,
+      filter:"",
+      // filterData: [],
+      // count: 0,
       countries: []
     };
     // this.selectCountry = this.selectCountry.bind(this);
@@ -42,6 +43,7 @@ class DashboardTable extends Component {
 
       //After getting data set the result
       this.setState({ data: res.data });
+      // console.log(Object.keys(this.state.data).length);
 
       // const pushCountry = [];
       // var count = 0;
@@ -99,37 +101,29 @@ search(event) {
   console.dir('search !'); 
 
   ////get value from user and assign it to 'filter'
-  // this.setState({filter:event.target.value});
-  const dataToSearch=event.target.value;
-   
-  const searchDataToLowerCase=dataToSearch.toString().toLowerCase();
+  this.setState({filter:event.target.value});
 
-  console.log(searchDataToLowerCase);
-
-  const filteredResult = this.state.data.filter(item => {
-
-    console.log('item', Object.keys(item).some(key =>item[key].toString().toLowerCase() ) );
-
-    return Object.keys(item).some(key =>
-      item[key].toString().toLowerCase().includes(searchDataToLowerCase)
-      );
-    });
-    this.setState({filterData:filteredResult});
-
-    console.log(this.state.filterData);
 
 }
 
   render() {
-    // console.log('this', this.state.data.);
-    const { data, countries, loading, count, filterData } = this.state;
-    // console.log(countries);
+    const { data, loading,  filter } = this.state; 
+    //convert to lowercase
+    const searchDataToLowerCase=filter.toString().toLowerCase();
+  
+    const filteredResult = data.filter(item => {
+      // console.log('item', Object.keys(item).some(key =>item[key].toString().toLowerCase() ) );
+      
+      return Object.keys(item).some(key =>
+        item[key].toString().toLowerCase().includes(searchDataToLowerCase)
+        );
+      });
+
     return (
       <Fragment>
-    
       <Grid  container justify="center">
         <Grid item  xs={12} md={6} sm={12} className="cardBackgroundColor">
-          <Typography color="textSecondary" > Covid-19 Report from {countries.length} Countries  </Typography>
+          <Typography color="textSecondary" > Covid-19 Report from {Object.keys(data).length} Countries  </Typography>
           {/* <form  noValidate autoComplete="off">
             <Input placeholder="Search" onChange={this.search}  />
           </form> */}
@@ -172,7 +166,7 @@ search(event) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filterData.map((result) => {
+                {filteredResult.map((result) => {
                     return (
                       <TableRow hover key={result.country} className={
                         ( (result.active === 0) && (result.deaths === 0) ) ? 'noCasesAndDeath': (result.active === 0)? 'noCases':'' 
