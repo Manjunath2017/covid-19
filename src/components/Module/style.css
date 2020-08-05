@@ -44,11 +44,22 @@
   .noCasesAndDeath{
     background-color: #e9ffdb !important;
   }
-.noCases{
-  background-color: #c3e6fc !important;
-}
+  .noCases{
+    background-color: #c3e6fc !important;
+   }
 
   .tableHeader{
     font-weight: 400 !important;
     font-size: 16px !important;
+  }
+
+  .newCases{
+      background-color:#FEFF9C;    
+  }
+  .newDeaths{
+      background-color:#ff4c4c;
+      color:#ffffff !important;
+  }
+  .newRecoveries{
+      background-color:#c3d8c3;
   }

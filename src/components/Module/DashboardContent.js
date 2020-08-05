@@ -39,7 +39,6 @@ class DashboardContent extends Component {
             <Typography color="textSecondary">  Last updated: {new Date(stateVar.updated).toDateString()}  {new Date(stateVar.updated).toLocaleTimeString()}</Typography>
           </Grid>
         </Grid>
-        
         <Grid container justify="center">
           <Grid item xs={12} md={3} sm={3} className="card" >
             <CardContent>

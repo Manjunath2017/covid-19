@@ -16,6 +16,8 @@ import {
 } from "@material-ui/core";
 // import Input from '@material-ui/core/Input';
 
+
+
 class DashboardTable extends Component {
   constructor(props) {
     super(props);
@@ -123,7 +125,7 @@ search(event) {
       <Fragment>
       <Grid  container justify="center">
         <Grid item  xs={12} md={6} sm={12} className="cardBackgroundColor">
-          <Typography color="textSecondary" > Covid-19 Report from {Object.keys(data).length} Countries  </Typography>
+          <Typography color="textSecondary" > Covid-19 Report of {Object.keys(data).length} Countries  </Typography>
           {/* <form  noValidate autoComplete="off">
             <Input placeholder="Search" onChange={this.search}  />
           </form> */}
@@ -154,14 +156,14 @@ search(event) {
                     <span style={{visibility:"hidden"}}>SelectCountry</span>
                     <TextField style={{marginTop:"-32px"}}label="SearchCountry" onChange={this.search}  />
                   </TableCell>
-                  <TableCell align="center" className="tableHeader">TotalCases</TableCell>
-                  <TableCell align="center" className="tableHeader">NewCases</TableCell>
-                  <TableCell align="center" className="tableHeader">TotalActive</TableCell>
-                  <TableCell align="center" className="tableHeader">TotalRecovered</TableCell>
-                  <TableCell align="center" className="tableHeader">NewRecovered</TableCell>
+                  <TableCell align="center" className="tableHeader">Total Cases</TableCell>
+                  <TableCell align="center" className="tableHeader">New Cases</TableCell>
+                  <TableCell align="center" className="tableHeader">Total Active</TableCell>
+                  <TableCell align="center" className="tableHeader">Total Recovered</TableCell>
+                  <TableCell align="center" className="tableHeader">New Recovered</TableCell>
                   <TableCell align="center" className="tableHeader">Critical</TableCell>
-                  <TableCell align="center" className="tableHeader">TotalDeaths</TableCell>
-                  <TableCell align="center" className="tableHeader">NewDeaths</TableCell>
+                  <TableCell align="center" className="tableHeader">Total Deaths</TableCell>
+                  <TableCell align="center" className="tableHeader">New Deaths</TableCell>
                   {/* <TableCell style={{paddingleft:"60px"}} align="left" >Department</TableCell>   */}
                 </TableRow>
               </TableHead>
@@ -181,13 +183,13 @@ search(event) {
                         </TableCell> */}
                         <TableCell align="left">{result.country.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.cases.toLocaleString()}</TableCell>
-                        <TableCell align="center">{result.todayCases.toLocaleString()}</TableCell>
+                        <TableCell align="center" className={result.todayCases > 0? 'newCases':''}>{result.todayCases >0? '+'+result.todayCases.toLocaleString() : '0' }</TableCell>
                         <TableCell align="center">{result.active.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.recovered.toLocaleString()}</TableCell>
-                        <TableCell align="center">{result.todayRecovered.toLocaleString()}</TableCell>
+                        <TableCell align="center" className={result.todayRecovered > 0? 'newRecoveries':''}>{result.todayRecovered>0? '+'+result.todayRecovered.toLocaleString() : '0' }</TableCell>
                         <TableCell align="center">{result.critical.toLocaleString()}</TableCell>
                         <TableCell align="center">{result.deaths.toLocaleString()}</TableCell>
-                        <TableCell align="center">{result.todayDeaths.toLocaleString()}</TableCell>
+                        <TableCell align="center" className={result.todayDeaths > 0? 'newDeaths':''}>{result.todayDeaths>0? '+'+result.todayDeaths.toLocaleString() : '0' }</TableCell>
                       </TableRow>
                     );
                   })
