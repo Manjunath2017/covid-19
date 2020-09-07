@@ -168,7 +168,8 @@ search(event) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredResult.map((result) => {
+                {
+                filteredResult.length>0 ? filteredResult.map((result) => {
                     return (
                       <TableRow hover key={result.country} className={
                         ( (result.active === 0) && (result.deaths === 0) ) ? 'noCasesAndDeath': (result.active === 0)? 'noCases':'' 
@@ -193,7 +194,12 @@ search(event) {
                       </TableRow>
                     );
                   })
-                }
+                :
+                 <TableRow>
+                  <TableCell align="left" colSpan={12}>No matching records found</TableCell>
+                </TableRow>
+              } 
+
               </TableBody>
             </Table>
           </TableContainer>
